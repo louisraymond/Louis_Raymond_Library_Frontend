@@ -1,12 +1,13 @@
 import React from 'react'
 
 import Book from '../Components/Book'
-
+import Menu from '../Components/Menu'
 class BookContainer extends React.Component{
 
 
   state = {
     allBooks:[],
+    view: 'allBooks'
   }//end of state
 
 
@@ -38,15 +39,17 @@ class BookContainer extends React.Component{
     if (desiredView ==='allBooks') {
       return this.state.allBooks
         .map(book =>{
-          console.log(book.availability)
           return <Book book={book}/>})
     } else {
-      return this.state.allBooks
+      return (this.state.allBooks
         .filter(book => book.availability === desiredView)
-        .map(book =><Book book={book}/>)
+        .map(book =><Book book={book}/>))
     }//end of if statement
   }//end of render books
 
+  ChangeView = (input) =>{
+    this.setState({view:input})
+  }
 
   componentDidMount(){
     fetch(`https://raw.githubusercontent.com/JumpWork/100-best-books/master/books.json`)
@@ -57,7 +60,12 @@ class BookContainer extends React.Component{
   }//This fetches all the books and places them in state under this.state.allBooks
 
       render(){
-        return(<div>{this.renderBooks()}</div>)
+        return(
+      <div>
+        <Menu ChangeView={this.ChangeView}/>
+        {this.renderBooks(this.state.view)}
+      </div>)
+
       }//end of render
 
 }//end of BookContainer
