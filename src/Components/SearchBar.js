@@ -5,9 +5,9 @@ class SearchBar extends React.Component {
     searchTerm:""
   }
 
-  updateSearchTerm = (searchTerm)=> {
-    this.setState({searchTerm})
-  }
+  updateSearchTerm = (event) => {
+     this.setState({searchTerm : event.target.value})
+   }
 
   render(){
     return(
@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
         e.preventDefault()
         this.props.search(this.state.searchTerm)}
       }>
-      <input onChange={this.updateSearchTerm}/>
+      <input onChange={(e)=>this.updateSearchTerm(e)}/>
     </form>
   )}
 }

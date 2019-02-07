@@ -46,7 +46,7 @@ class BookContainer extends React.Component{
           return <Book book={book}/>})
     }else if (desiredView === "search") {
       return this.state.allBooks
-        .filter(book => console.log(book.title.toLowerCase().includes(term.toLowerCase())|book.author.toLowerCase().includes(term.toLowerCase())))
+        .filter(book => book.title.toLowerCase().includes(term.toLowerCase())|book.author.toLowerCase().includes(term.toLowerCase()))
         .map(book => <Book book={book}/>)
     }else {
       return (this.state.allBooks
