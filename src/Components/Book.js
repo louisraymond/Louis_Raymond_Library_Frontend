@@ -13,7 +13,6 @@ class Book extends React.Component{
         <button  onClick={(e)=>this.props.requestBook(this.props.book)}>Request</button>
       </div>)
   }else{
-    console.log(this.props.book)
     return (
       <div id='Card' onClick={this.handleClick}>
         <img alt='' src={'http://www.100bestbooks.xyz/static/' + this.props.book.imageLink}/>

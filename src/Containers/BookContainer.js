@@ -2,12 +2,16 @@ import React from 'react'
 
 import Book from '../Components/Book'
 import Menu from '../Components/Menu'
+import SearchBar from '../Components/SearchBar'
+
 class BookContainer extends React.Component{
+
 
 
   state = {
     allBooks:[],
-    view: 'allBooks'
+    view: 'allBooks',
+    searchTerm:""
   }//end of state
 
 
@@ -35,12 +39,16 @@ class BookContainer extends React.Component{
     return array
   }// end of mockDatabase
 
-  renderBooks = (desiredView='allBooks') =>{
+  renderBooks = (desiredView='allBooks',term="") =>{
     if (desiredView ==='allBooks') {
       return this.state.allBooks
         .map(book =>{
           return <Book book={book}/>})
-    } else {
+    }else if (desiredView === "search") {
+      return this.state.allBooks
+        .filter(book => console.log(book.title.toLowerCase().includes(term.toLowerCase())|book.author.toLowerCase().includes(term.toLowerCase())))
+        .map(book => <Book book={book}/>)
+    }else {
       return (this.state.allBooks
         .filter(book => book.availability === desiredView)
         .map(book =><Book book={book}/>))
@@ -49,6 +57,14 @@ class BookContainer extends React.Component{
 
   ChangeView = (input) =>{
     this.setState({view:input})
+  }
+
+
+  search = (term) => {
+    term = term.toString()
+     this.setState({
+       view:"search",
+       searchTerm:term})
   }
 
   componentDidMount(){
@@ -62,8 +78,9 @@ class BookContainer extends React.Component{
       render(){
         return(
       <div>
+        <SearchBar search={this.search}/>
         <Menu ChangeView={this.ChangeView}/>
-        {this.renderBooks(this.state.view)}
+        {this.renderBooks(this.state.view,this.state.searchTerm)}
       </div>)
 
       }//end of render
