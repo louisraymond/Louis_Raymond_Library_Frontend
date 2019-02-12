@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 //components
-import BookContainer from './Containers/BookContainer'
+import LibraryContainer from './Containers/LibraryContainer'
 
 //
 
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BookContainer/>  
+        <LibraryContainer/>
       </div>
     );
   }

@@ -10,8 +10,8 @@ class Menu extends React.Component{
     <div>
       <ul>
         <li><button onClick={() => this.props.ChangeView('allBooks')}>Browse</button></li>
-        <li><button onClick={() => this.props.ChangeView('CheckedOut')}>Checked Out</button></li>
-        <li><button onClick={() => this.props.ChangeView('Reserved')}>Reserved</button></li>
+        <li><button onClick={() => this.props.ChangeView('CheckedOut')}> See Your Checked Out Books!</button></li>
+        <li><button onClick={() => this.props.ChangeView('Reserved')}>See Your Reserved Books!</button></li>
       </ul>
     </div>)
   }//end of render
