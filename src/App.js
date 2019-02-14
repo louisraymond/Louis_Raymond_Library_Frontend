@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
 
 //components
 import LibraryContainer from './Containers/LibraryContainer'
@@ -16,5 +16,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

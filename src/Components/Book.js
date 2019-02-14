@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button';
 
 
 class Book extends React.Component{
@@ -28,10 +29,9 @@ class Book extends React.Component{
           <img alt='' src={'http://www.100bestbooks.xyz/static/' + this.props.book.imageLink}/>
         </div>
         <ul>
-        <button  onClick={this.requestOrReturnBook}>{this.buttonText(this.props.book)}</button>
-          <li> {this.props.book.title} </li>
-          <li> {this.props.book.author} </li>
-          <li>{this.props.book.availability} </li>
+        <Button  onClick={this.requestOrReturnBook}>{this.buttonText(this.props.book)}</Button>
+          <h3> {this.props.book.title} </h3>
+          <h5> {this.props.book.author} </h5>
         </ul>
       </span>)
   }//end of render

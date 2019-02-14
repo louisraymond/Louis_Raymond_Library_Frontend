@@ -4,6 +4,10 @@ import Book from '../Components/Book'
 import Menu from '../Components/Menu'
 import SearchBar from '../Components/SearchBar'
 
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+
 
 class LibraryContainer extends React.Component{
 
@@ -19,7 +23,7 @@ class LibraryContainer extends React.Component{
     let cloneArray = this.state.allBooks
 
     if (book.availability ==='Available') {
-      cloneArray[index].dueDate =  new Date(Date .now() + 12096e5)
+      cloneArray[index].dueDate = new Date(Date.now() + 12096e5)
       cloneArray[index].availability = 'CheckedOut'
       alert('Thanks for Checking this book out!')
     } else if (book.availability ==='Unavailable'){
@@ -57,6 +61,7 @@ class LibraryContainer extends React.Component{
         book.dueDate =  new Date(Date.now() + 2*(12096e5))
         //you currently have taken this book out, you have to return it by a due date
       }
+      return null
     })
     return array
   }// end of mockDatabase
@@ -65,15 +70,15 @@ class LibraryContainer extends React.Component{
     if (desiredView ==='allBooks') {
       return this.state.allBooks
         .map(book =>{
-          return <Book book={book} availability={book.availability} requestOrReturnBook={this.requestOrReturnBook}/>})
+          return  <Grid item xs={2} ><Book className='book' book={book}  key={book.title + book.author} availability={book.availability} requestOrReturnBook={this.requestOrReturnBook}/></Grid>})
     }else if (desiredView === "search") {
       return this.state.allBooks
         .filter(book => book.title.toLowerCase().includes(term.toLowerCase())|book.author.toLowerCase().includes(term.toLowerCase()))
-        .map(book => <Book book={book} availability={book.availability} requestOrReturnBook={this.requestOrReturnBook}/>)
+        .map(book =>  <Grid item xs={2}><Book book={book} key={book.title + book.author} availability={book.availability} requestOrReturnBook={this.requestOrReturnBook}/></Grid>)
     }else {
       return (this.state.allBooks
         .filter(book => book.availability === desiredView)
-        .map(book =><Book book={book} availability={book.availability} requestOrReturnBook={this.requestOrReturnBook}/>))
+        .map(book =>  <Grid item xs={2}> <Book book={book} key={book.title + book.author} availability={book.availability} requestOrReturnBook={this.requestOrReturnBook}/> </Grid>))
     }//end of if statement
   }//end of render books
 
@@ -101,8 +106,17 @@ class LibraryContainer extends React.Component{
         return(
       <div>
         <SearchBar search={this.search}/>
-        <Menu ChangeView={this.ChangeView}/>
-        {this.renderBooks(this.state.view,this.state.searchTerm)}
+      <div>
+
+        <Menu className='one' ChangeView={this.ChangeView}/>
+        <Grid
+        className='two'
+        container
+        spacing={1}
+        justify="flex-end">
+            {this.renderBooks(this.state.view,this.state.searchTerm)}
+          </Grid>
+        </div>
       </div>)
 
       }//end of render

@@ -18,6 +18,13 @@
   color: white;
 }
 
+.book{
+  height: 10vw;
+  width: 10vw;
+}
+
+
+
 .App-link {
   color: #61dafb;
 }
@@ -30,3 +37,11 @@
     transform: rotate(360deg);
   }
 }
+
+.sideMenu{
+  position: absolute;
+}
+
+  .content: {
+    flexGrow: 1;
+  };
